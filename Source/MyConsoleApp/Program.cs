@@ -2,15 +2,33 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RestSharp;
-using RestSharp.Authenticators;
 
 namespace MyConsoleApp
 {
         
     class Program
     {
-       static async Task Main(string[] args)
+        static void EnterName() 
         {
+            Console.Write("Enter your name: ");
+            string userInput = Console.ReadLine();
+            // ...
+        }
+
+        static async Task Main(string[] args)
+        {
+            // Entity stuff:
+            MyContext context = new MyContext();
+            var peo = new People()
+            {
+                Name = "hej",
+            };
+            context.People.Add(peo);
+            context.SaveChanges();
+            Console.WriteLine("User saved to database");
+            //
+
+
             StarshipResponse starshipResponse = await new StarshipResponse().GetShips();
             PeopleResponse peopleResponse = await new PeopleResponse().GetPeople();
 
