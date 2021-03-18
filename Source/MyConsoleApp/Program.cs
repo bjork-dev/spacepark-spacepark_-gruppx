@@ -1,12 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace MyConsoleApp
 {
+        
     class Program
     {
-        static void Main(string[] args)
+       static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            StarshipResponse starshipResponse = await new StarshipResponse().GetShips();
+            PeopleResponse peopleResponse = await new PeopleResponse().GetPeople();
+
+            foreach (var p in starshipResponse.Results)
+            {
+                Console.WriteLine(p.Name);
+            }
+
+            Console.ReadKey();
         }
     }
+
+    
 }
