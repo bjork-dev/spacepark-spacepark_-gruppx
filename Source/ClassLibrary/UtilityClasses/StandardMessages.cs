@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ClassLibrary
 {
@@ -10,13 +11,42 @@ namespace ClassLibrary
     {
         public static void StartMessage()
         {
-            Console.Clear();
-            Console.WriteLine(@" ____  ____   _    ____ _____   ____   _    ____  _  __
-/ ___||  _ \ / \  / ___| ____| |  _ \ / \  |  _ \| |/ /
-\___ \| |_) / _ \| |   |  _|   | |_) / _ \ | |_) | ' / 
- ___) |  __/ ___ | |___| |___  |  __/ ___ \|  _ <| . \ 
-|____/|_| /_/   \_\____|_____| |_| /_/   \_|_| \_|_|\_\");
+            string ascii = @"             ____  ____   _    ____ _____   ____   _    ____  _  __
+            / ___||  _ \ / \  / ___| ____| |  _ \ / \  |  _ \| |/ /
+            \___ \| |_) / _ \| |   |  _|   | |_) / _ \ | |_) | ' / 
+             ___) |  __/ ___ | |___| |___  |  __/ ___ \|  _ <| . \ 
+            |____/|_| /_/   \_\____|_____| |_| /_/   \_|_| \_|_|\_\";
+            bool done = false;        
+            while (!done)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine(ascii);
+                    Thread.Sleep(900);
 
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine(ascii);
+                    Thread.Sleep(900);
+
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine(ascii);
+                    Thread.Sleep(900);
+
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(ascii);
+                    Thread.Sleep(900);
+
+                    i = 4;
+                    done = true;
+                }
+            }
+
+            Console.ResetColor();
             Console.WriteLine("");
         }
 
