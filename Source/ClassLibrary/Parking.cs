@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace ClassLibrary
         public int Fee { get; set; }
         public decimal MaxLength { get; set; }
         public bool Occupied { get; set; }
+        [MaxLength(50)]
         public string User { get; set; }
 
         public void Park(IShipResult ship)
