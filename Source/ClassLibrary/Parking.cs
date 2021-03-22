@@ -80,12 +80,12 @@ namespace ClassLibrary
 
         public void LeavePark()
         {
-            IPerson person = new Person();
+          //  IPerson person = new Person();
             IPayment payment = new Payment();
             string name = StandardMessages.NameReader();
-            var r = person.GetPerson();
+            var r = Person.GetAllPersons();
             StandardMessages.LoadingMessage();
-            if (r.Result.Any(p => p.Name == name))
+            if (r.Any(p => p.Name == name))
             {
                 var parkings = ParkingLots();
                 var array = ArrayBuilder.OnLeaveArray(parkings);
