@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using RestSharp;
 
@@ -17,21 +18,22 @@ namespace ClassLibrary
             var response = await client.GetAsync<Person>(request);
             return response.Results;
         }
-        private async Task<string> GetNumberOfPersons()
+        private async Task<int> GetNumberOfPersons()
         {
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest($"people/", DataFormat.Json);
             var response = await client.GetAsync<Person>(request);
-            return response.Count;
+            return int.Parse(response.Count);
         }
         private Task<List<Results>> CreateTask(int i)
         {
             return Task.Run(() => GetPersonsOnePage(i).Result);
         }
-        public List<Results> GetAllPersons()
+        public async Task<List<Results>> GetAllPersons()
         {
-            int numberOfPersons = int.Parse(GetNumberOfPersons().Result);
-            int personsPerOnePage = GetPersonsOnePage(1).Result.Count;
+            int numberOfPersons = await GetNumberOfPersons();
+            var p = await GetPersonsOnePage(1);
+            int personsPerOnePage = p.Count;
             int numberOfPages = (int)Math.Ceiling(1.0 * numberOfPersons / personsPerOnePage);
 
             var tasks = new List<Task<List<Results>>>();

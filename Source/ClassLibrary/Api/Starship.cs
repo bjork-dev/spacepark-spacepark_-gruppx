@@ -26,7 +26,7 @@ namespace ClassLibrary
             var shipResult = GetStarships();
             var array = ArrayBuilder.ShipArray(shipResult);
 
-            if (apiResult.Any(p => p.Name == name))
+            if (apiResult.Result.Any(p => p.Name == name))
             {
                 Console.Clear();
                 var selectedOption = Menu.ShowMenu($"Welcome {name}. What ship will you be parking today?\n", array);

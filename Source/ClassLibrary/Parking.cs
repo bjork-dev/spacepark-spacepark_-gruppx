@@ -85,7 +85,7 @@ namespace ClassLibrary
             string name = StandardMessages.NameReader();
             var r = person.GetAllPersons();
             StandardMessages.LoadingMessage();
-            if (r.Any(p => p.Name == name))
+            if (r.Result.Any(p => p.Name == name))
             {
                 var parkings = ParkingLots();
                 var array = ArrayBuilder.OnLeaveArray(parkings);

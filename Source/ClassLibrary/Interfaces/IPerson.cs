@@ -5,6 +5,6 @@ namespace ClassLibrary
 {
     public interface IPerson
     {
-        List<Results> GetAllPersons();
+        Task<List<Results>> GetAllPersons();
     }
 }
