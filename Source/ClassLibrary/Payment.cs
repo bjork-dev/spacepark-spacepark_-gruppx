@@ -27,6 +27,7 @@ namespace ClassLibrary
             context.Add(pay);
             context.SaveChanges();
             Console.WriteLine("Payment successful");
+            Console.WriteLine($"Payment By: {pay.User}. Amount: {pay.Amount} credits. Payment Date: {pay.PayDate}");
             Console.ReadKey();
         }
 

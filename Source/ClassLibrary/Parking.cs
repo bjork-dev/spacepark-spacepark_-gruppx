@@ -24,11 +24,7 @@ namespace ClassLibrary
             Console.Clear();
             var selectedOption = Menu.ShowMenu($"You have selected to park {ship.Name}. Choose parking spot", array);
 
-            for (int i = 0; i < parkings.Result.Count; i++)
-            {
-                if (selectedOption == i)
-                    Finish(parkings, i, ship);
-            }
+            Finish(parkings, selectedOption, ship);
         }
 
         private bool SizeTooBig(Task<List<IParking>> parkings, int index, IShipResult ship)
@@ -92,19 +88,14 @@ namespace ClassLibrary
                 Console.Clear();
                 var selectedOption = Menu.ShowMenu($"Welcome {name}. What ship will you be leaving with today?\n", array);
 
-                for (int i = 0; i < parkings.Result.Count; i++)
+                if (Occupation.ParkIsOccupied(parkings, selectedOption) == false)
                 {
-                    if (selectedOption == i)
-                    {
-                        if (Occupation.ParkIsOccupied(parkings, i) == false)
-                        {
-                            StandardMessages.EmptyParkingLotMessage();
-                            break;
-                        }
-                        payment.Pay(parkings, i, name);
-                        Leave(parkings, i);
-                        break;
-                    }
+                    StandardMessages.EmptyParkingLotMessage();
+                }
+                else
+                {
+                    payment.Pay(parkings, selectedOption, name);
+                    Leave(parkings, selectedOption);
                 }
             }
             else
