@@ -29,7 +29,7 @@ namespace ClassLibrary
             Finish(parkings, selectedOption, ship);
         }
 
-        private bool SizeTooBig(Task<List<IParking>> parkings, int index, IShipResult ship)
+        private static bool SizeTooBig(Task<List<IParking>> parkings, int index, IShipResult ship)
         {
             return ship.Length > parkings.Result[index].MaxLength;
         }
@@ -42,7 +42,7 @@ namespace ClassLibrary
             return list;
         }
 
-        private void Park(Task<List<IParking>> parkings, int index, IShipResult ship)
+        private static void Park(Task<List<IParking>> parkings, int index, IShipResult ship)
         {
             Console.Clear();
             using var context = new SpaceContext();
@@ -56,7 +56,7 @@ namespace ClassLibrary
             Console.ReadKey();
         }
 
-        private void Finish(Task<List<IParking>> parkings, int index, IShipResult ship)
+        private static void Finish(Task<List<IParking>> parkings, int index, IShipResult ship)
         {
             if (SizeTooBig(parkings, index, ship))
             {
@@ -106,7 +106,7 @@ namespace ClassLibrary
                 StandardMessages.NotAllowedMessage();
             }
         }
-        private void Leave(Task<List<IParking>> parkings, int index)
+        private static void Leave(Task<List<IParking>> parkings, int index)
         {
             using var context = new SpaceContext();
             Console.WriteLine("Leaving...");
