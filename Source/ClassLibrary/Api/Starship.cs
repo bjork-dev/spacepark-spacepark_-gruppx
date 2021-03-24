@@ -20,9 +20,9 @@ namespace ClassLibrary
 
         public IShipResult SelectShip()
         {
-            //IPerson person = new Person();
+            IPerson person = new Person();
             string name = StandardMessages.NameReader();
-            var apiResult = Person.GetAllPersons();
+            var apiResult = person.GetAllPersons();
             var shipResult = GetStarships();
             var array = ArrayBuilder.ShipArray(shipResult);
 

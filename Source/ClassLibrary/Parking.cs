@@ -80,10 +80,10 @@ namespace ClassLibrary
 
         public void LeavePark()
         {
-          //  IPerson person = new Person();
+            IPerson person = new Person();
             IPayment payment = new Payment();
             string name = StandardMessages.NameReader();
-            var r = Person.GetAllPersons();
+            var r = person.GetAllPersons();
             StandardMessages.LoadingMessage();
             if (r.Any(p => p.Name == name))
             {
