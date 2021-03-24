@@ -113,6 +113,7 @@ namespace ClassLibrary
             var ship = context.Parkings.First(s => s.Id == parkings.Result[index].Id);
             ship.Occupied = false;
             ship.User = null;
+            ship.ParkedBy = null;
             context.SaveChangesAsync();
             Console.Clear();
             Console.WriteLine("Left.");
