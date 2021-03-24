@@ -18,12 +18,12 @@ namespace ClassLibrary
             var response = await client.GetAsync<Person>(request);
             return response.Results;
         }
-        private async Task<int> GetNumberOfPersons()
+        private static async Task<Person> GetInfo()
         {
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest($"people/", DataFormat.Json);
             var response = await client.GetAsync<Person>(request);
-            return int.Parse(response.Count);
+            return response;
         }
         private Task<List<Results>> CreateTask(int i)
         {
@@ -31,9 +31,9 @@ namespace ClassLibrary
         }
         public async Task<List<Results>> GetAllPersons()
         {
-            int numberOfPersons = await GetNumberOfPersons();
-            var p = await GetPersonsOnePage(1);
-            int personsPerOnePage = p.Count;
+            Person p = await GetInfo();  
+            int numberOfPersons = int.Parse(p.Count);
+            int personsPerOnePage = p.Results.Count;
             int numberOfPages = (int)Math.Ceiling(1.0 * numberOfPersons / personsPerOnePage);
 
             var tasks = new List<Task<List<Results>>>();
