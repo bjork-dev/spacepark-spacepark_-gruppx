@@ -46,6 +46,13 @@ namespace ClassLibrary
             Console.WriteLine("Loading...");
         }
 
+        public static void NotYourShipMessage()
+        {
+            Console.Clear();
+            Console.Write("Not your ship! Press any key.");
+            Console.ReadKey();
+        }
+
         public static string NameReader()
         {
             Console.Clear();

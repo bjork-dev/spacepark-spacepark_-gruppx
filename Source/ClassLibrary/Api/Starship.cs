@@ -43,7 +43,8 @@ namespace ClassLibrary
             {
                 Console.Clear();
                 var selectedOption = Menu.ShowMenu($"Welcome {name}. What ship will you be parking today?\n", array);
-                return shipResult.Result.Where((_, i) => selectedOption == i).FirstOrDefault();
+                shipResult.Result.Where((_, i) => selectedOption == i).First().Driver = name;
+                return shipResult.Result.Where((_, i) => selectedOption == i).First();
             }
             StandardMessages.NotAllowedMessage();
             return null;

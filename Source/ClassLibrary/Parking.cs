@@ -14,6 +14,8 @@ namespace ClassLibrary
         public decimal MaxLength { get; set; }
         public bool Occupied { get; set; }
         [MaxLength(50)]
+        public string ParkedBy { get; set; }
+        [MaxLength(50)]
         public string User { get; set; }
 
         public void Park(IShipResult ship)
@@ -48,6 +50,7 @@ namespace ClassLibrary
             var park = context.Parkings.First(p => p.Id == parkings.Result[index].Id);
             park.Occupied = true;
             park.User = ship.Name;
+            park.ParkedBy = ship.Driver;
             context.SaveChangesAsync();
             Console.WriteLine("Parked");
             Console.ReadKey();
@@ -89,9 +92,9 @@ namespace ClassLibrary
                 var selectedOption = Menu.ShowMenu($"Welcome {name}. What ship will you be leaving with today?\n", array);
 
                 if (Occupation.ParkIsOccupied(parkings, selectedOption) == false)
-                {
                     StandardMessages.EmptyParkingLotMessage();
-                }
+                if(parkings.Result[selectedOption].ParkedBy != name)
+                    StandardMessages.NotYourShipMessage();
                 else
                 {
                     payment.Pay(parkings, selectedOption, name);

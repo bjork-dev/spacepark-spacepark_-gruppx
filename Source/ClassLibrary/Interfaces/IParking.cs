@@ -9,6 +9,7 @@ namespace ClassLibrary
         public int Fee { get; set; }
         public decimal MaxLength { get; set; }
         public bool Occupied { get; set; }
+        public string ParkedBy { get; set; }
         public string User { get; set; }
         public void Park(IShipResult ship);
         public Task<List<IParking>> ParkingLots();
