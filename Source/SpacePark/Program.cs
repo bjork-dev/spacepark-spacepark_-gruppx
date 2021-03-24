@@ -9,7 +9,7 @@ namespace SpacePark
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             IParking parking = new Parking();
             IPayment payment = new Payment();

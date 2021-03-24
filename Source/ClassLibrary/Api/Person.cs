@@ -11,7 +11,7 @@ namespace ClassLibrary
         public int Id { get; set; }
         public string Count { get; set; }
         public List<Results> Results { get; set; }
-        private async Task<List<Results>> GetPersonsOnePage(int page)
+        private static async Task<List<Results>> GetPersonsOnePage(int page)
         {
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest($"people/?page={page}", DataFormat.Json);
