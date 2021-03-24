@@ -12,11 +12,24 @@ namespace ClassLibrary
 
         public async Task<List<ShipResult>> GetStarships()
         {
+            await using var context = new SpaceContext();
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest("starships/", DataFormat.Json);
             var response = await client.GetAsync<Starship>(request);
+            var parkedShips = context.Parkings.Where(p => p.Occupied).ToArray();
+
+            for (int i = 0; i < parkedShips.Length; i++)
+            {
+                var name = parkedShips[i].User;
+                if (response.Results.Any(n => n.Name == name))
+                {
+                    var index = response.Results.First(s => s.Name == name);
+                    response.Results.Remove(index);
+                }
+            }
             return response.Results;
         }
+
 
         public IShipResult SelectShip()
         {
