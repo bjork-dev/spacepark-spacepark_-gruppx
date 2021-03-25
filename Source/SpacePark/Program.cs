@@ -13,7 +13,7 @@ namespace SpacePark
         {
             IParking parking = new Parking();
             IPayment payment = new Payment();
-            IStarship starship = new Starship();
+            IShipResult starship = new ShipResult();
 
             var running = true;
             while (running)

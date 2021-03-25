@@ -8,45 +8,37 @@ namespace ClassLibrary
 {
     public class Person : IPerson
     {
-        public int Id { get; set; }
         public string Count { get; set; }
         public List<Results> Results { get; set; }
-        private static async Task<List<Results>> GetPersonsOnePage(int page)
+        private static async Task<Person> GetInfo(int page)
         {
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest($"people/?page={page}", DataFormat.Json);
             var response = await client.GetAsync<Person>(request);
-            return response.Results;
-        }
-        private static async Task<Person> GetInfo()
-        {
-            var client = new RestClient("https://swapi.dev/api/");
-            var request = new RestRequest($"people/", DataFormat.Json);
-            var response = await client.GetAsync<Person>(request);
             return response;
         }
-        private Task<List<Results>> CreateTask(int i)
+        private Task<Person> CreateTask(int i)
         {
-            return Task.Run(() => GetPersonsOnePage(i).Result);
+            return Task.Run(() => GetInfo(i));
         }
         public async Task<List<Results>> GetAllPersons()
         {
-            Person p = await GetInfo();  
+            Person p = await GetInfo(1);  
             int numberOfPersons = int.Parse(p.Count);
             int personsPerOnePage = p.Results.Count;
             int numberOfPages = (int)Math.Ceiling(1.0 * numberOfPersons / personsPerOnePage);
 
-            var tasks = new List<Task<List<Results>>>();
+            var tasks = new List<Task<Person>>();
             for (int i = 1; i < numberOfPages + 1; i++)
             {
                 tasks.Add(CreateTask(i));
             }
 
-            List<Results> temp = new List<Results>();
+            List<Results> temp = new ();
 
             for (int i = 0; i < numberOfPages; i++)
             {
-                temp.AddRange(tasks[i].Result);
+                temp.AddRange(tasks[i].Result.Results);
             }
             return temp;
         }
@@ -57,5 +49,6 @@ namespace ClassLibrary
         public int Id { get; set; }
         public string Name { get; set; }
         public string Height { get; set; }
+        public List<string> Starships { get;set; }
     }
 }

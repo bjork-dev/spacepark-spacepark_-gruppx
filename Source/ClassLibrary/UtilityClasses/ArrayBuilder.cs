@@ -19,12 +19,12 @@ namespace ClassLibrary
             string[] parks = tempList.ToArray();
             return parks;
         }
-        public static string[] ShipArray(Task<List<ShipResult>> ship)
+        public static string[] ShipArray(List<ShipResult> ship)
         {
             var tempList = new List<string>();
-            for (int i = 0; i < ship.Result.Count; i++)
+            for (int i = 0; i < ship.Count; i++)
             {
-                tempList.Add($"{ship.Result[i].Name} ({ship.Result[i].Length}m)");
+                tempList.Add($"{ship[i].Name} ({ship[i].Length}m)");
             }
             string[] parks = tempList.ToArray();
             return parks;
