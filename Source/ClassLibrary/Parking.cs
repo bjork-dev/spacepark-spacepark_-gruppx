@@ -93,7 +93,7 @@ namespace ClassLibrary
 
                 if (Occupation.ParkIsOccupied(parkings, selectedOption) == false)
                     StandardMessages.EmptyParkingLotMessage();
-                if(parkings.Result[selectedOption].ParkedBy != name)
+                else if(parkings.Result[selectedOption].ParkedBy != name)
                     StandardMessages.NotYourShipMessage();
                 else
                 {
