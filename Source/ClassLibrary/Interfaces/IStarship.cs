@@ -5,7 +5,7 @@ namespace ClassLibrary
 {
     public interface IStarship
     {
-        public Task<List<ShipResult>> GetStarships();
+        public Task<ShipResult> GetStarships(string address);
         public IShipResult SelectShip();
     }
 }
