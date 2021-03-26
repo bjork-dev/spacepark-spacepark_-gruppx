@@ -67,7 +67,7 @@ namespace ClassLibrary
             Console.ReadKey();
         }
 
-        public static void NoShipsAvailableMessge()
+        public static void NoShipsAvailableMessage()
         {
             Console.Clear();
             Console.WriteLine("Sorry, you don't have any ships.");

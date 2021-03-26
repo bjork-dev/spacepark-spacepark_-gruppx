@@ -9,7 +9,7 @@ namespace ClassLibrary.Api
 {
     public class ShipApi
     {
-        private static async Task<Starship> GetStarships(string address) // Get all starships from API
+        public static async Task<Starship> GetStarships(string address) // Get all starships from API
         {
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest("starships/" + address, DataFormat.Json);
@@ -53,7 +53,7 @@ namespace ClassLibrary.Api
                     StandardMessages.AllShipsParked(); // If all available ships for the user is already parked
                     return null;
                 }
-                StandardMessages.NoShipsAvailableMessge(); // If the user does not have any ships
+                StandardMessages.NoShipsAvailableMessage(); // If the user does not have any ships
                 return null;
             }
             StandardMessages.NotAllowedMessage(); // If the user does not exist in the API
@@ -74,7 +74,7 @@ namespace ClassLibrary.Api
             }
             return ownShips;
         }
-        private static IEnumerable<string> GetShipNumber(IEnumerable<string> shipsAddresses) // Extract the ship number from URL.
+        public static IEnumerable<string> GetShipNumber(IEnumerable<string> shipsAddresses) // Extract the ship number from URL.
         {
             return from s in shipsAddresses let index = s.TrimEnd('/').LastIndexOf('/') select s.Substring(index + 1);
         }
