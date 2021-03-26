@@ -59,5 +59,19 @@ namespace ClassLibrary
             Console.WriteLine("Enter name: ");
             return Console.ReadLine();
         }
+
+        public static void AllShipsParked()
+        {
+            Console.Clear();
+            Console.WriteLine("Sorry, all your ships are already parked.");
+            Console.ReadKey();
+        }
+
+        public static void NoShipsAvailableMessge()
+        {
+            Console.Clear();
+            Console.WriteLine("Sorry, you don't have any ships.");
+            Console.ReadKey();
+        }
     }
 }

@@ -10,8 +10,8 @@ namespace ClassLibrary
         public decimal MaxLength { get; set; }
         public bool Occupied { get; set; }
         public string ParkedBy { get; set; }
-        public string User { get; set; }
-        public void Park(IShipResult ship);
+        public string ShipName { get; set; }
+        public void Park(IStarship ship);
         public Task<List<IParking>> ParkingLots();
         public void LeavePark();
     }

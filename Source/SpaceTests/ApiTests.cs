@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
+using ClassLibrary.Api;
 using Xunit;
 
 namespace SpaceTests
@@ -14,7 +15,7 @@ namespace SpaceTests
         public static void When_Calling_People_Except_List_OfType_Person_Results()
         {
             // Arrange
-            IPerson person = new Person();
+            IPersonApi person = new PersonApi();
             // Act
             var list = person.GetAllPersons();
             // Assert
@@ -34,7 +35,7 @@ namespace SpaceTests
         public static void When_Calling_People_Except_82_Objects_OfType_Result()
         {
             // Arrange
-            IPerson person = new Person();
+            IPersonApi person = new PersonApi();
             // Act
             var list = person.GetAllPersons();
             // Assert

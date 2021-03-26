@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClassLibrary;
+using ClassLibrary.Api;
 using RestSharp;
 
 namespace SpacePark
@@ -13,7 +14,7 @@ namespace SpacePark
         {
             IParking parking = new Parking();
             IPayment payment = new Payment();
-            IShipResult starship = new ShipResult();
+            ShipApi starship = new ShipApi();
 
             var running = true;
             while (running)

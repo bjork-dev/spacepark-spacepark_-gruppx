@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ClassLibrary
+namespace ClassLibrary.Api
 {
-    public interface IPerson
+    public interface IPersonApi
     {
         Task<List<Results>> GetAllPersons();
     }

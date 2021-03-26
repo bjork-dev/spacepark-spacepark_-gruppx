@@ -19,7 +19,7 @@ namespace ClassLibrary
             string[] parks = tempList.ToArray();
             return parks;
         }
-        public static string[] ShipArray(List<ShipResult> ship)
+        public static string[] ShipArray(List<Starship> ship)
         {
             var tempList = new List<string>();
             for (int i = 0; i < ship.Count; i++)
@@ -36,7 +36,7 @@ namespace ClassLibrary
             {
                 tempList.Add(parkings.Result[i].Occupied == false
                     ? $"Parking Spot {parkings.Result[i].Id}."
-                    : $"Parking Spot {parkings.Result[i].Id}. Occupied by {parkings.Result[i].User}");
+                    : $"Parking Spot {parkings.Result[i].Id}. Occupied by {parkings.Result[i].ShipName}");
             }
             string[] parks = tempList.ToArray();
             return parks;

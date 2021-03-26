@@ -8,7 +8,7 @@ namespace ClassLibrary
 {
     public class Occupation
     {
-        public static bool AllParksOccupied()
+        public static bool AllParksOccupied() // Check if all parkings are occupied
         {
             using var context = new SpaceContext();
             StandardMessages.LoadingMessage();
@@ -16,7 +16,7 @@ namespace ClassLibrary
             StandardMessages.FullParkMessage();
             return true;
         }
-        public static bool ParkIsOccupied(Task<List<IParking>> parkings, int index)
+        public static bool ParkIsOccupied(Task<List<IParking>> parkings, int index) // Check if specific park is occupied
         {
             using var context = new SpaceContext();
             var park = context.Parkings.First(p => p.Id == parkings.Result[index].Id);
