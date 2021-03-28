@@ -12,7 +12,7 @@ namespace SpaceTests
     public class ApiTests
     {
         [Fact]
-        public static void When_Calling_People_Except_List_OfType_Person_Results()
+        public static void When_Calling_People_Expect_List_OfType_Person_Results()
         {
             // Arrange
             IPersonApi person = new PersonApi();
@@ -21,18 +21,8 @@ namespace SpaceTests
             // Assert
             Assert.IsType<List<Results>>(list.Result);
         }
-        //[Fact]
-        //public static void When_Calling_Starships_Except_List_OfType_Starship_ShipResult()
-        //{
-        //    // Arrange
-        //    IStarship person = new Starship();
-        //    // Act
-        //    var list = person.GetStarships();
-        //    // Assert
-        //    Assert.IsType<List<ShipResult>>(list.Result);
-        //}
         [Fact]
-        public static void When_Calling_People_Except_82_Objects_OfType_Result()
+        public static void When_Calling_People_Expect_82_Objects_OfType_Result()
         {
             // Arrange
             IPersonApi person = new PersonApi();
@@ -41,15 +31,24 @@ namespace SpaceTests
             // Assert
             Assert.Equal(82, list.Result.Count);
         }
-        //[Fact]
-        //public static void When_Calling_Starships_And_NoShips_AreParked_Except_10_Objects_OfType_ShipResult()
-        //{
-        //    // Arrange
-        //    IStarship starship = new Starship();
-        //    // Act
-        //    var list = starship.GetStarships();
-        //    // Assert
-        //    Assert.Equal(10, list.Result.Count);
-        //}
+        [Fact]
+        public static void When_Calling_GetStarships_Twelve_Expect_xWing()
+        {
+            Task<Starship> xWing = ShipApi.GetStarships("12/");
+            Assert.Equal("X-wing", xWing.Result.Name);
+        }
+        [Fact]
+        public static void When_Calling_GetShipNumber_Expect_KeyList()
+        {
+            IEnumerable<string> inputList = new List<string>
+            {
+                "http://swapi.dev/api/starships/12/",
+                "http://swapi.dev/api/starships/22/"
+            };
+            IEnumerable<string> outputList = ShipApi.GetShipNumber(inputList);
+            IEnumerable<string> keyList = new List<string> { "12/", "22/" };
+            Assert.Equal(keyList, outputList);
+        }
+
     }
 }
