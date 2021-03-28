@@ -20,7 +20,7 @@ namespace ClassLibrary.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ClassLibrary.Parking", b =>
+            modelBuilder.Entity("ClassLibrary.ParkingModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

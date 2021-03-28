@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,18 +7,9 @@ using ClassLibrary.Api;
 
 namespace ClassLibrary
 {
-    public class Parking
+    public class ParkingActions
     {
-        public int Id { get; set; }
-        public int Fee { get; set; }
-        public decimal MaxLength { get; set; }
-        public bool Occupied { get; set; }
-        [MaxLength(50)]
-        public string ParkedBy { get; set; }
-        [MaxLength(50)]
-        public string ShipName { get; set; }
-
-        public void Park(Starship ship) 
+        public void Park(Starship ship)
         {
             StandardMessages.LoadingMessage();
             var parkings = ParkingLots();
@@ -80,7 +70,7 @@ namespace ClassLibrary
         public void LeavePark() // Read name and let user select the ship to leave with
         {
             PersonApi person = new PersonApi();
-            Payment payment = new Payment();
+            PaymentActions payment = new PaymentActions();
             string name = StandardMessages.NameReader();
             var r = person.GetAllPersons();
             StandardMessages.LoadingMessage();
@@ -93,7 +83,7 @@ namespace ClassLibrary
 
                 if (Occupation.ParkIsOccupied(parkings, selectedOption) == false) // If user selects a empty parking lot, display message
                     StandardMessages.EmptyParkingLotMessage();
-                else if(parkings.Result[selectedOption].ParkedBy != name) // If user selects a ship that is not theirs, display message
+                else if (parkings.Result[selectedOption].ParkedBy != name) // If user selects a ship that is not theirs, display message
                     StandardMessages.NotYourShipMessage();
                 else
                 {
@@ -121,3 +111,4 @@ namespace ClassLibrary
         }
     }
 }
+

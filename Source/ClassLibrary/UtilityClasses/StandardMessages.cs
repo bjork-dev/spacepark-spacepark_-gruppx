@@ -29,7 +29,7 @@ namespace ClassLibrary
         public static void FullParkMessage()
         {
             Console.Clear();
-            Console.WriteLine("Parking is full. Go away. Press any key.");
+            Console.WriteLine("ParkingModel is full. Go away. Press any key.");
             Console.ReadKey();
         }
 
