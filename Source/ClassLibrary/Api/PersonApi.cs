@@ -7,7 +7,7 @@ using RestSharp;
 
 namespace ClassLibrary.Api
 {
-    public class PersonApi : IPersonApi
+    public class PersonApi
     {
         private static async Task<Person> GetPersonPage(int page) // Get one page from API
         {

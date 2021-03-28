@@ -8,7 +8,7 @@ using ClassLibrary.Api;
 
 namespace ClassLibrary
 {
-    public class Parking : IParking
+    public class Parking
     {
         public int Id { get; set; }
         public int Fee { get; set; }
@@ -19,7 +19,7 @@ namespace ClassLibrary
         [MaxLength(50)]
         public string ShipName { get; set; }
 
-        public void Park(IStarship ship) 
+        public void Park(Starship ship) 
         {
             StandardMessages.LoadingMessage();
             var parkings = ParkingLots();
@@ -30,19 +30,19 @@ namespace ClassLibrary
             Finish(parkings, selectedOption, ship); // Add ship to parking in database
         }
 
-        private static bool SizeTooBig(Task<List<IParking>> parkings, int index, IStarship ship)
+        private static bool SizeTooBig(Task<List<Parking>> parkings, int index, Starship ship)
         {
             return ship.Length > parkings.Result[index].MaxLength;
         }
 
-        public async Task<List<IParking>> ParkingLots() // Get all parking lots
+        public async Task<List<Parking>> ParkingLots() // Get all parking lots
         {
             await using var context = new SpaceContext();
-            List<IParking> list = context.Parkings.OrderBy(i => i.Id).ToList<IParking>();
+            List<Parking> list = context.Parkings.OrderBy(i => i.Id).ToList<Parking>();
             return list;
         }
 
-        private static void Park(Task<List<IParking>> parkings, int index, IStarship ship) // Add ship to parking slot in database
+        private static void Park(Task<List<Parking>> parkings, int index, Starship ship) // Add ship to parking slot in database
         {
             Console.Clear();
             using var context = new SpaceContext();
@@ -56,7 +56,7 @@ namespace ClassLibrary
             Console.ReadKey();
         }
 
-        private static void Finish(Task<List<IParking>> parkings, int index, IStarship ship) // Final check before adding to database
+        private static void Finish(Task<List<Parking>> parkings, int index, Starship ship) // Final check before adding to database
         {
             if (SizeTooBig(parkings, index, ship))
             {
@@ -79,8 +79,8 @@ namespace ClassLibrary
 
         public void LeavePark() // Read name and let user select the ship to leave with
         {
-            IPersonApi person = new PersonApi();
-            IPayment payment = new Payment();
+            PersonApi person = new PersonApi();
+            Payment payment = new Payment();
             string name = StandardMessages.NameReader();
             var r = person.GetAllPersons();
             StandardMessages.LoadingMessage();
@@ -106,7 +106,7 @@ namespace ClassLibrary
                 StandardMessages.NotAllowedMessage();
             }
         }
-        private static void Leave(Task<List<IParking>> parkings, int index) // Remove entry from database
+        private static void Leave(Task<List<Parking>> parkings, int index) // Remove entry from database
         {
             using var context = new SpaceContext();
             Console.WriteLine("Leaving...");

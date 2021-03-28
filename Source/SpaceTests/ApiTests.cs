@@ -15,7 +15,7 @@ namespace SpaceTests
         public static void When_Calling_People_Expect_List_OfType_Person_Results()
         {
             // Arrange
-            IPersonApi person = new PersonApi();
+            PersonApi person = new PersonApi();
             // Act
             var list = person.GetAllPersons();
             // Assert
@@ -25,7 +25,7 @@ namespace SpaceTests
         public static void When_Calling_People_Expect_82_Objects_OfType_Result()
         {
             // Arrange
-            IPersonApi person = new PersonApi();
+            PersonApi person = new PersonApi();
             // Act
             var list = person.GetAllPersons();
             // Assert
@@ -34,7 +34,7 @@ namespace SpaceTests
         [Fact]
         public static void When_Calling_GetStarships_Twelve_Expect_xWing()
         {
-            IShipApi shipApi = new ShipApi();
+            ShipApi shipApi = new ShipApi();
 
             Task<Starship> xWing = shipApi.GetStarships("12/");
 
@@ -43,7 +43,7 @@ namespace SpaceTests
         [Fact]
         public static void When_Calling_GetShipNumber_Expect_KeyList()
         {
-            IShipApi shipApi = new ShipApi();
+            ShipApi shipApi = new ShipApi();
             IEnumerable<string> inputList = new List<string>
             {
                 "http://swapi.dev/api/starships/12/",

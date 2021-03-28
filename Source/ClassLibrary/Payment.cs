@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public class Payment : IPayment
+    public class Payment
     {
         public int Id { get; set; }
         public int Amount { get; set; }
@@ -15,12 +15,12 @@ namespace ClassLibrary
         public string User { get; set; }
         public DateTime PayDate { get; set; }
 
-        public void Pay(Task<List<IParking>> parkings, int index, string name)
+        public void Pay(Task<List<Parking>> parkings, int index, string name)
         {
             Console.Clear();
             using var context = new SpaceContext();
             Console.WriteLine("Using swish to pay...");
-            IPayment pay = new Payment();
+            Payment pay = new Payment();
             pay.Amount = parkings.Result[index].Fee;
             pay.User = name;
             pay.PayDate = DateTime.Now;

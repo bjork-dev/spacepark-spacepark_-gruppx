@@ -7,7 +7,7 @@ using ClassLibrary.Api;
 
 namespace ClassLibrary
 {
-    public class Starship : IStarship
+    public class Starship
     {
         public string Name { get; set; }
         public decimal Length { get; set; }

@@ -16,7 +16,7 @@ namespace ClassLibrary
             StandardMessages.FullParkMessage();
             return true;
         }
-        public static bool ParkIsOccupied(Task<List<IParking>> parkings, int index) // Check if specific park is occupied
+        public static bool ParkIsOccupied(Task<List<Parking>> parkings, int index) // Check if specific park is occupied
         {
             using var context = new SpaceContext();
             var park = context.Parkings.First(p => p.Id == parkings.Result[index].Id);

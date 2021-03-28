@@ -12,9 +12,9 @@ namespace SpacePark
     {
         private static void Main()
         {
-            IParking parking = new Parking();
-            IPayment payment = new Payment();
-            IShipApi starship = new ShipApi();
+            Parking parking = new Parking();
+            Payment payment = new Payment();
+            ShipApi starship = new ShipApi();
 
             var running = true;
             while (running)

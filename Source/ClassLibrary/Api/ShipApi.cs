@@ -7,7 +7,7 @@ using RestSharp;
 
 namespace ClassLibrary.Api
 {
-    public class ShipApi : IShipApi
+    public class ShipApi
     {
         public async Task<Starship> GetStarships(string address) // Get all starships from API
         {
@@ -18,12 +18,12 @@ namespace ClassLibrary.Api
         }
         private static async Task<Starship> CreateTask(string address) // Create tasks to run each page of API request async
         {
-            IShipApi shipApi = new ShipApi();
+            ShipApi shipApi = new ShipApi();
             return await Task.Run(() => shipApi.GetStarships(address));
         }
-        public IStarship SelectShip() // Get the name from input and check if name exists in API request.
+        public Starship SelectShip() // Get the name from input and check if name exists in API request.
         {
-            IPersonApi personApi = new PersonApi();
+            PersonApi personApi = new PersonApi();
             string name = StandardMessages.NameReader();
             var apiResult = personApi.GetAllPersons();
             Results user = apiResult.Result.FirstOrDefault(p => p.Name == name);
@@ -79,12 +79,5 @@ namespace ClassLibrary.Api
         {
             return from s in shipsAddresses let index = s.TrimEnd('/').LastIndexOf('/') select s.Substring(index + 1);
         }
-    }
-
-    public interface IShipApi
-    {
-        IEnumerable<string> GetShipNumber(IEnumerable<string> shipsAddresses);
-        IStarship SelectShip();
-        Task<Starship> GetStarships(string address);
     }
 }

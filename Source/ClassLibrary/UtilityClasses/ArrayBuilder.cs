@@ -8,7 +8,7 @@ namespace ClassLibrary
 {
     public class ArrayBuilder
     {
-        public static string[] ParkArray(Task<List<IParking>> parkings)
+        public static string[] ParkArray(Task<List<Parking>> parkings)
         {
             var tempList = new List<string>();
             for (int i = 0; i < parkings.Result.Count; i++)
@@ -29,7 +29,7 @@ namespace ClassLibrary
             string[] parks = tempList.ToArray();
             return parks;
         }
-        public static string[] OnLeaveArray(Task<List<IParking>> parkings)
+        public static string[] OnLeaveArray(Task<List<Parking>> parkings)
         {
             var tempList = new List<string>();
             for (int i = 0; i < parkings.Result.Count; i++)
