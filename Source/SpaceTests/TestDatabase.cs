@@ -1,34 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace SpaceTests
 {
-    public abstract class TestDatabase : IDisposable // Mock database using memory as source and SQLite as provider
+    public class TestDatabase : IDisposable
     {
-        private const string InMemoryConnectionString = "DataSource=:memory:";
-        private readonly SqliteConnection _connection;
-        protected readonly SpaceContext DbContext;
+        private DbConnection _connection;
 
-        protected TestDatabase()
+        private DbContextOptions<TestContext> CreateOptions()
         {
-            _connection = new SqliteConnection(InMemoryConnectionString);
-            _connection.Open();
-            var options = new DbContextOptionsBuilder<SpaceContext>()
-                .UseSqlite(_connection)
-                .Options;
-            DbContext = new SpaceContext();
-            DbContext.Database.EnsureCreated();
+            return new DbContextOptionsBuilder<TestContext>()
+                .UseSqlite(_connection).Options;
+        }
+
+        public TestContext CreateContext()
+        {
+            if (_connection == null)
+            {
+                _connection = new SqliteConnection("DataSource=:memory:");
+                _connection.Open();
+
+                var options = CreateOptions();
+                using var context = new TestContext(options);
+                context.Database.EnsureCreated();
+            }
+
+            return new TestContext(CreateOptions());
         }
 
         public void Dispose()
         {
-            _connection.Close();
+            if (_connection != null)
+            {
+                _connection.Dispose();
+                _connection = null;
+            }
         }
     }
 }

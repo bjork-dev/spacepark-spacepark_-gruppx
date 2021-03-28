@@ -9,6 +9,10 @@ namespace ClassLibrary
 {
     public class SpaceContext : DbContext
     {
+        public SpaceContext()
+        { }
+        public SpaceContext(DbContextOptions<SpaceContext> options) : base(options)
+        { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(

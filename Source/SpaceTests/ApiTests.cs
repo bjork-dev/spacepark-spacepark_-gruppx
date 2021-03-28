@@ -34,19 +34,25 @@ namespace SpaceTests
         [Fact]
         public static void When_Calling_GetStarships_Twelve_Expect_xWing()
         {
-            Task<Starship> xWing = ShipApi.GetStarships("12/");
+            IShipApi shipApi = new ShipApi();
+
+            Task<Starship> xWing = shipApi.GetStarships("12/");
+
             Assert.Equal("X-wing", xWing.Result.Name);
         }
         [Fact]
         public static void When_Calling_GetShipNumber_Expect_KeyList()
         {
+            IShipApi shipApi = new ShipApi();
             IEnumerable<string> inputList = new List<string>
             {
                 "http://swapi.dev/api/starships/12/",
                 "http://swapi.dev/api/starships/22/"
             };
-            IEnumerable<string> outputList = ShipApi.GetShipNumber(inputList);
+
+            IEnumerable<string> outputList = shipApi.GetShipNumber(inputList);
             IEnumerable<string> keyList = new List<string> { "12/", "22/" };
+
             Assert.Equal(keyList, outputList);
         }
 

@@ -38,8 +38,7 @@ namespace ClassLibrary
         public async Task<List<IParking>> ParkingLots() // Get all parking lots
         {
             await using var context = new SpaceContext();
-            var parkings = context.Parkings.OrderBy(i => i.Id).ToList();
-            var list = parkings.ToList<IParking>();
+            List<IParking> list = context.Parkings.OrderBy(i => i.Id).ToList<IParking>();
             return list;
         }
 

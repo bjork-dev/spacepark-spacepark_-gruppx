@@ -14,7 +14,7 @@ namespace SpacePark
         {
             IParking parking = new Parking();
             IPayment payment = new Payment();
-            ShipApi starship = new ShipApi();
+            IShipApi starship = new ShipApi();
 
             var running = true;
             while (running)
