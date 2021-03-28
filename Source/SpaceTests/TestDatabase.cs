@@ -23,26 +23,22 @@ namespace SpaceTests
 
         public TestContext CreateContext()
         {
-            if (_connection == null)
-            {
-                _connection = new SqliteConnection("DataSource=:memory:");
-                _connection.Open();
+            if (_connection != null) return new TestContext(CreateOptions());
+            _connection = new SqliteConnection("DataSource=:memory:");
+            _connection.Open();
 
-                var options = CreateOptions();
-                using var context = new TestContext(options);
-                context.Database.EnsureCreated();
-            }
+            var options = CreateOptions();
+            using var context = new TestContext(options);
+            context.Database.EnsureCreated();
 
             return new TestContext(CreateOptions());
         }
 
         public void Dispose()
         {
-            if (_connection != null)
-            {
-                _connection.Dispose();
-                _connection = null;
-            }
+            if (_connection == null) return;
+            _connection.Dispose();
+            _connection = null;
         }
     }
 }

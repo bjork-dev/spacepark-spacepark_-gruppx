@@ -48,6 +48,7 @@ namespace SpaceTests
         {
             using var db = new TestDatabase();
             using var context = db.CreateContext();
+
             var pay = new Payment() {Amount = 100, PayDate = DateTime.Now, User = "Darth Vader"};
             context.Payments.Add(pay);
             context.SaveChanges();
