@@ -1,21 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Xunit;
 
 namespace SpaceTests
 {
-    public class ParkTests
+    public class ParkTests : TestDatabase
     {
-        [Fact]
-        public void When_Calling_ParkingLots_Expect_5()
-        {
-            // Arrange
-            IParking parking = new Parking();
-            // Act
-            var parkingLots = parking.ParkingLots();
-            // Assert
-            Assert.Equal(5, parkingLots.Result.Count);
-        }
+
     }
+
 }
