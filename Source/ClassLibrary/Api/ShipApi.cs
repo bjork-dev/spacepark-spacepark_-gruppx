@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using ClassLibrary.Models;
 using RestSharp;
 
 namespace ClassLibrary.Api
@@ -18,12 +18,12 @@ namespace ClassLibrary.Api
         }
         private static async Task<Starship> CreateTask(string address) // Create tasks to run each page of API request async
         {
-            ShipApi shipApi = new ShipApi();
+            var shipApi = new ShipApi();
             return await Task.Run(() => shipApi.GetStarships(address));
         }
         public Starship SelectShip() // Get the name from input and check if name exists in API request.
         {
-            PersonApi personApi = new PersonApi();
+            var personApi = new PersonApi();
             string name = StandardMessages.NameReader();
             var apiResult = personApi.GetAllPersons();
             Results user = apiResult.Result.FirstOrDefault(p => p.Name == name);

@@ -1,11 +1,4 @@
-﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ClassLibrary.Api;
-
-namespace ClassLibrary
+﻿namespace ClassLibrary.Models
 {
     public class Starship
     {

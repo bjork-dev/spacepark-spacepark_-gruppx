@@ -12,9 +12,10 @@ namespace SpacePark
     {
         private static void Main()
         {
-            ParkingActions parking = new ParkingActions();
-            PaymentActions payment = new PaymentActions();
-            ShipApi starship = new ShipApi();
+            var parking = new ParkingActions();
+            var leave = new LeaveParkingActions();
+            var payment = new PaymentActions();
+            var starship = new ShipApi();
 
             var running = true;
             while (running)
@@ -36,7 +37,7 @@ namespace SpacePark
                         parking.Park(ship);
                         break;
                     case 1:
-                        parking.LeavePark();
+                        leave.LeavePark();
                         break;
                     case 2:
                         payment.Receipts();

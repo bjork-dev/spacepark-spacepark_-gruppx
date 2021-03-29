@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
 using ClassLibrary.Api;
+using ClassLibrary.Models;
 using Xunit;
 
 namespace SpaceTests
