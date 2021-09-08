@@ -1,1 +1,6 @@
 name: SpacePark Workflow
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    name: build job
