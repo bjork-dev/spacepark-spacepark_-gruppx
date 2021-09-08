@@ -3,8 +3,8 @@ on: [push]
 jobs:
   
   build:
-    runs-on: windows-latest
-    name: build job
+    runs-on: [windows-latest, ubuntu-latest]
+    name: build & test on win/linux
   
     steps:
     - uses: actions/checkout@v2
