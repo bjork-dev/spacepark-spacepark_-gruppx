@@ -1,7 +1,7 @@
 name: SpacePark Workflow
 on: [push]
 jobs:
-    name: build & test on win/linux
+    # name: build & test on win/linux
     build:
         runs-on: ${{ matrix.os }}
 
