@@ -1,6 +1,14 @@
 name: SpacePark Workflow
 on: [push]
 jobs:
+  
   build:
     runs-on: windows-latest
     name: build job
+  
+    steps:
+    - uses: actions@checkout@v2
+    - uses: actions/setup-dotnet
+      with: 
+        dotnet-version: 5.0.x
+    - run: dotnet build
